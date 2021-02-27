@@ -1,0 +1,20 @@
+<div class="search">
+  <h1>Search Movies</h1>
+  <input id="name" class="form-control my-3" type="text" formControlName="name" (keyup)="onKeyUp($event, '')" (keydown)="onKeyDown($event)" (keypress)="onKeyPress($event)" placeholder="Search for a movie..."/>
+  <button (click)="searchMovie()" class="button" type="submit" class="btn btn-primary px-5">Search</button>
+</div>
+
+<div id="results" class="row d-flex justify-content-center mb-3">
+  <ng-container *ngIf="movies">
+    <div *ngFor="let movie of movies" class="card bg-dark text-light col-md-2 mx-3 my-3">
+      <img class="card-img-top mt-3" [src]="movie.Poster" alt="Movie Poster">
+      <div class="card-body">
+        <h5 class="card-title">{{movie.Title | ucfirst }}</h5>
+        <p class="card-text">{{movie.Year}}</p>
+        <p class="card-text"><small class="text-muted">{{movie.Genre}}</small></p>
+        <button class="btn btn-primary" [routerLink]="['/show_detail', movie.imdbID]">View Details</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
